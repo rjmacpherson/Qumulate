@@ -4,7 +4,7 @@
 / [a] List Usage and Global Variables Information 
 / =============================================================================
 
-/ run.q -component [component] -p
+/ run.q -component [component]
 
 / Run script has to load configuration and default libraries for the component 
 / Then load the comonent script 

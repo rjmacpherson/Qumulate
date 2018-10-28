@@ -5,10 +5,10 @@
 # [a] Source Core Libraries and Config
 # =============================================================================
 
-export QUMULATEHOME=~/q/Qumulate
-export CONFIGHOME=$QUMULATEHOME/config
-export CODEHOME=$QUMULATEHOME/code
-export BASHHOME=$CODEHOME/bash
+QUMULATEHOME=~/q/Qumulate
+CONFIGHOME=$QUMULATEHOME/config
+CODEHOME=$QUMULATEHOME/code
+BASHHOME=$CODEHOME/bash
 
 # Source bash library scripts
 for file in $BASHHOME/lib/*
@@ -48,18 +48,18 @@ function evalAction
     if [ "$1" = "start" ]
     then 
 	    logInfo "Starting KDB Process: "$2
-	    COMMAND="$BASHHOME/kdbStart.sh $2 $3" 
-    elif [ "$ACTION" = "stop" ]
+	    COMMAND="$BASHHOME/bin/kdbStart.sh $2 $3" 
+    elif [ "$1" = "stop" ]
     then
         logInfo "Stopping KDB Processes"
-        COMMAND="$BASHHOME/kdbStop.sh" 
-    elif [ "$ACTION" = "status" ]
+        COMMAND="$BASHHOME/bin/kdbStop.sh" 
+    elif [ "$1" = "status" ]
     then 
         logInfo "KDB Status"
-    elif [ "$ACTION" = "cleanup" ]
+    elif [ "$1" = "cleanup" ]
     then 
 	    logInfo "Starting clean up Process"
-	    COMMAND="$BASHHOME/kdbCleanup.sh"
+	    COMMAND="$BASHHOME/bin/kdbCleanup.sh"
     else
 	    logErr "Command Line argument not known"
 	    exit 1
