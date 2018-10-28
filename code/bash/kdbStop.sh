@@ -9,7 +9,7 @@
 # Remove the PID file 
 for pidfile in $PIDHOME/*; do 
     PID=$(cat $pidfile)
-    echo "Killing Process with PID: $PID"
+    logInfo "Killing Process with PID: $PID"
     kill -9 $PID
     rm $pidfile
 done

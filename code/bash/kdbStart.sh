@@ -14,6 +14,9 @@
 # [b] Start Core Processes
 # =============================================================================
 
+COMPONENT=$1
+RUNMETHOD=$2
+
 COMMAND="$QEXEC $KDBHOME/run.q -component $(printenv $COMPONENT)"
 
 if [ "$RUNMETHOD" = "int" ]
