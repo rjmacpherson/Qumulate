@@ -17,7 +17,7 @@
 COMPONENT=$1
 RUNMETHOD=$2
 
-COMMAND="$QEXEC $KDBHOME/run.q -component $(printenv $COMPONENT)"
+COMMAND="$QEXEC $CORE_KDB_HOME/run.q -component $(printenv $COMPONENT)"
 
 if [ "$RUNMETHOD" = "int" ]
 then 
@@ -27,9 +27,9 @@ then
 elif [ "$RUNMETHOD" = "bg" ] || [ ! -n "$RUNMETHOD" ]
 then 
 	logInfo "Starting $COMPONENT in the background"
-	LOGFILE=$LOGHOME/${COMPONENT}_$DATETIME_TAG.log
+	LOGFILE=$CORE_LOG_HOME/${COMPONENT}_$DATETIME_TAG.log
     eval "$COMMAND -method bg  >& $LOGFILE &"
-    echo $! > $PIDHOME/$COMPONENT.pid 
+    echo $! > $CORE_PID_HOME/$COMPONENT.pid 
 else
     logErr "Passed Run Method not known"
     exit 1

@@ -1,0 +1,21 @@
+#!/bin/bash
+# Bash Variables for KDB Components 
+
+# =============================================================================
+# [a] Core KDB Components
+# =============================================================================
+
+# Ensure passed component is a known environment variable/not ALL
+if [ ! -n "$(printenv $TP_PORT)" ]
+then 
+	logErr "TP_PORT variable not declared"
+	exit 1
+fi
+
+export FEED="$CORE_KDB_HOME/component/feed.q -p "$((TP_PORT - 1))" -tp $TP_PORT"
+export TP="$CORE_KDB_HOME/component/tp.q -p $TP_PORT"
+export CTP="$CORE_KDB_HOME/component/ctp.q -p "$((TP_PORT + 1))""
+export RDB="$CORE_KDB_HOME/component/rdb.q -p "$((TP_PORT + 2))" -tp $TP_PORT -hdb "$((TP_PORT + 3))""
+export WDB="$CORE_KDB_HOME/component/wdb.q -p "$((TP_PORT + 2))""
+export HDB="$CORE_KDB_HOME/component/hdb.q -p "$((TP_PORT + 3))""
+export GW="$$CORE_KDB_HOME/component/gw.q -p "$((TP_PORT + 4))""

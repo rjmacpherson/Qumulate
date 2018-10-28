@@ -2,16 +2,26 @@
 # KDB Action Script to control KDB Processes
 
 # =============================================================================
-# [a] Source Core Libraries and Config
+# [a] Source Command Line Variables
 # =============================================================================
 
-QUMULATEHOME=~/q/Qumulate
-CONFIGHOME=$QUMULATEHOME/config
-CODEHOME=$QUMULATEHOME/code
-BASHHOME=$CODEHOME/bash
+ACTION=$1
+APP=$2
+COMPONENT=$3
+RUNMETHOD=$4
+
+# =============================================================================
+# [b] Source Core Specific Libraries and Config
+# =============================================================================
+
+QUMULATE_HOME=~/q/Qumulate
+CORE_HOME=$QUMULATE_HOME/core
+CORE_CODE_HOME=$CORE_HOME/code
+CORE_BASH_HOME=$CORE_CODE_HOME/bash
+CORE_CONFIG_HOME=$CORE_HOME/config
 
 # Source bash library scripts
-for file in $BASHHOME/lib/*
+for file in $CORE_BASH_HOME/lib/*
 do 
     source $file 
     # Manually display until logging functions loaded
@@ -19,20 +29,22 @@ do
     echo -e $date_time" INFO : Loaded core bash library file: "`basename $file`
 done
 
-# Source all core config
-for file in $CONFIGHOME/core/*
+# Source all core config, sourcing directories.cf first
+for file in $CORE_CONFIG_HOME/directories.cf $CORE_CONFIG_HOME/$(ls $CORE_CONFIG_HOME/ | grep -vi directories)
 do
     source $file
     logInfo "Loaded core bash configuration file: "`basename $file`
 done
 
 # =============================================================================
-# [b] Create Command to Run  
+# [c] Source App Libraries and Config
 # =============================================================================
 
-ACTION=$1
-COMPONENT=$2
-RUNMETHOD=$3
+
+
+# =============================================================================
+# [d] Create Command to Run  
+# =============================================================================
 
 # Ensure passed component is a known environment variable/not ALL
 if [ ! -n "$(printenv $COMPONENT)" ] && [ ! "$COMPONENT" == ALL ]
@@ -48,18 +60,18 @@ function evalAction
     if [ "$1" = "start" ]
     then 
 	    logInfo "Starting KDB Process: "$2
-	    COMMAND="$BASHHOME/bin/kdbStart.sh $2 $3" 
+	    COMMAND="$CORE_BASH_HOME/bin/kdbStart.sh $2 $3" 
     elif [ "$1" = "stop" ]
     then
         logInfo "Stopping KDB Processes"
-        COMMAND="$BASHHOME/bin/kdbStop.sh" 
+        COMMAND="$CORE_BASH_HOME/bin/kdbStop.sh" 
     elif [ "$1" = "status" ]
     then 
         logInfo "KDB Status"
     elif [ "$1" = "cleanup" ]
     then 
 	    logInfo "Starting clean up Process"
-	    COMMAND="$BASHHOME/bin/kdbCleanup.sh"
+	    COMMAND="$CORE_BASH_HOME/bin/kdbCleanup.sh"
     else
 	    logErr "Command Line argument not known"
 	    exit 1
@@ -68,7 +80,7 @@ function evalAction
 }
 
 # ============================================================================
-# [c] Execution
+# [e] Execution
 # ============================================================================
 
 if [ "$COMPONENT" = ALL ]

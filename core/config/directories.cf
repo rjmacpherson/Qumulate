@@ -1,0 +1,48 @@
+# Bash Core Variables
+
+# =============================================================================
+# [a] q Default Setup
+# =============================================================================
+
+export QHOME=~/q
+export QEXEC=$QHOME/l32/q
+
+# =============================================================================
+# [b] Set up core directory locations
+# =============================================================================
+
+export QUMULATE_HOME=~/q/Qumulate
+export CORE_HOME=$QUMULATE_HOME/core
+
+# Code directories 
+export CORE_CODE_HOME=$CORE_HOME/code
+export CORE_BASH_HOME=$CORE_CODE_HOME/bash
+export CORE_KDB_HOME=$CORE_CODE_HOME/kdb
+
+# Config directories 
+export CORE_CONFIG_HOME=$CORE_HOME/config
+
+# Data directories 
+export CORE_DATA_HOME=$CORE_HOME/data
+export CORE_LOG_HOME=$CORE_DATA_HOME/log
+export CORE_PID_HOME=$CORE_DATA_HOME/pid
+
+# =============================================================================
+# [c] Set up app directory locations
+# =============================================================================
+
+export APP_HOME=$QUMULATE_HOME/app
+export APP_SPECIFIC_HOME=$APP_HOME/$APP
+export APP_SPECIFIC_CODE_HOME=$APP_SPECIFIC_HOME/code
+export APP_SPECIFIC_CONFIG_HOME=$APP_SPECIFIC_HOME/config
+export APP_SPECIFIC_DATA_HOME=$APP_SPECIFIC_HOME/data
+
+# =============================================================================
+# [d] Set start time and date
+# =============================================================================
+
+# Date and Time tags 
+export START_DATETIME=$(date --utc +'%Y.%m.%d_%H:%M:%S')
+export DATETIME_TAG=$(echo "$START_DATETIME" | tr : .)
+export START_DATE=${START_DATETIME:0:10}
+export START_TIME=${START_DATETIME:11:8}
