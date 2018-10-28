@@ -1,0 +1,34 @@
+# Bash Core Directories
+
+# =============================================================================
+# [a] q Default Setup
+# =============================================================================
+
+export QHOME=~/q
+export QEXEC=$QHOME/l32/q
+
+# =============================================================================
+# [b] Set up directory locations and current date 
+# =============================================================================
+
+export QUMULATEHOME=~/q/Qumulate
+
+# Code directories 
+export CODEHOME=$QUMULATEHOME/code
+export BASHHOME=$CODEHOME/bash
+export KDBHOME=$CODEHOME/kdb
+
+# Config directories 
+export CONFIGHOME=$QUMULATEHOME/config
+export SCHEMAHOME=$CONFIGHOME/schema
+
+# Data directories 
+export DATAHOME=$QUMULATEHOME/data
+export LOGHOME=$DATAHOME/log
+export PIDHOME=$DATAHOME/pid
+
+# Date and Time tags 
+export START_DATETIME=$(date --utc +'%Y.%m.%d_%H:%M:%S')
+export DATETIME_TAG=$(echo "$START_DATETIME" | tr : .)
+export START_DATE=${START_DATETIME:0:10}
+export START_TIME=${START_DATETIME:11:8}

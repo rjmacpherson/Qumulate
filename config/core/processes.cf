@@ -1,0 +1,13 @@
+# Bash Core KDB Processes 
+
+# =============================================================================
+# [a] Core Components
+# =============================================================================
+
+export FEED="$KDBHOME/component/feed.q -p 5009 -tp 5010"
+export TP="$KDBHOME/component/tp.q -p 5010"
+export CTP="$KDBHOME/component/ctp.q -p 5011"
+export RDB="$KDBHOME/component/rdb.q -p 5012 -tp 5010 -hdb 5013"
+export WDB="$KDBHOME/component/wdb.q -p 5012"
+export HDB="$KDBHOME/component/hdb.q -p 5013"
+export GW="$KDBHOME/component/gw.q -p 5014"
