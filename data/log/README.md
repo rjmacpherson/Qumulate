@@ -1,1 +1,3 @@
-h2. Log File Directory
+## Log File Directory
+
+This directory will contain process log files.

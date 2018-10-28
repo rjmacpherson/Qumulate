@@ -1,4 +1,4 @@
-h2. Data Directory 
+## Data Directory 
 
 This directory will contain all generated data. Such as:
 
