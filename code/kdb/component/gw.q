@@ -1,0 +1,1 @@
+/ Gateway (GW) Component Script
